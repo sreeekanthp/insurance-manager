@@ -26,17 +26,19 @@ class CustomerAPIViewTestCase(TestCase):
         """post: create new customer"""
         # given
         data = {
-            "first_name": "First",
-            "last_name": "Last",
-            "dob": "2020-01-01",
+            'first_name': 'First',
+            'last_name': 'Last',
+            'dob': '01-01-2020',
         }
+        customer_data = copy.deepcopy(data)
+        customer_data["dob"] = '2020-01-01'
         request = self.factory.post(self.url, data)
         force_authenticate(request, user=self.user)
         # when
         response = self.view(request)
         # then
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-        self.assertTrue(Customer.objects.filter(**data).exists())
+        self.assertTrue(Customer.objects.filter(**customer_data).exists())
 
     def test_post_raise_validation_error(self):
         """post: raise validation errors for invalid data"""
@@ -53,9 +55,9 @@ class CustomerAPIViewTestCase(TestCase):
         """post: return 403 for unauthenticated request"""
         # given
         data = {
-            "first_name": "First",
-            "last_name": "Last",
-            "dob": "2020-01-01",
+            'first_name': 'First',
+            'last_name': 'Last',
+            'dob': '01-01-2020',
         }
         request = self.factory.post(self.url, data)
         # when
@@ -77,10 +79,10 @@ class InsurancePolicyAPIViewTestCase(TestCase):
         """post: create new insurance policy"""
         # given
         data = {
-            "customer_id": CustomerFactory().id,
-            "type": "personal-accident",
-            "premium": 200,
-            "cover": 200000,
+            'customer_id': CustomerFactory().id,
+            'type': 'personal-accident',
+            'premium': 200,
+            'cover': 200000,
         }
         policy_data = copy.deepcopy(data)
         policy_data["policy_type"] = policy_data.pop("type")
@@ -107,10 +109,10 @@ class InsurancePolicyAPIViewTestCase(TestCase):
         """post: return 403 for unauthenticated request"""
         # given
         data = {
-            "customer_id": CustomerFactory().id,
-            "type": "personal-accident",
-            "premium": 200,
-            "cover": 200000,
+            'customer_id': CustomerFactory().id,
+            'type': 'personal-accident',
+            'premium': 200,
+            'cover': 200000,
         }
         request = self.factory.post(self.url, data)
         # when
