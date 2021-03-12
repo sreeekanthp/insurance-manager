@@ -18,10 +18,17 @@ Insurance manager is a django application to create customers and insurance poli
 
 	cd insurance-manager
 
+**Install requirements**
+
+    pip install -r requirements/development.txt
+
+**Run migrations**
+
+    python manage.py migrate
+
 **Create a super user**
 
     python manage.py createsuperuser
-
 
 **Run app locally**
 
@@ -34,4 +41,4 @@ app should be up and running at http://localhost:8000/
  - Create new customer - http://127.0.0.1:8000/api/v1/create_customer/
  - Create new policy - http://127.0.0.1:8000/api/v1/create_policy/
 
-Django rest framework UI is enabled for the endpoints and can be used to hit the api with given payload.
+Django rest framework UI is enabled for the endpoints and the Raw data form can be used to create customers/policy using respective apis.
