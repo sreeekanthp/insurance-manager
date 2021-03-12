@@ -36,9 +36,15 @@ Insurance manager is a django application to create customers and insurance poli
 
 app should be up and running at http://localhost:8000/
 
+**Login to admin**
+
+Got to http://localhost:8000/admin/ and login using your credentials.
+
 ## API Endpoints
 
  - Create new customer - http://127.0.0.1:8000/api/v1/create_customer/
  - Create new policy - http://127.0.0.1:8000/api/v1/create_policy/
 
 Django rest framework UI is enabled for the endpoints and the Raw data form can be used to create customers/policy using respective apis.
+
+New customers/policies created can be verified from the admin.
